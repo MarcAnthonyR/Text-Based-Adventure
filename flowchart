@@ -1,0 +1,43 @@
+//Hardware
+
+    
+    Set up PINS between uCtrl and display.
+    Attach two buttons to uCtrl, each to an available PORT to be read as an input (PORT D is free)
+
+//Software
+
+////preprocessor
+    Define width and height
+
+    .cseg, .org, rjmp, setup
+
+////one-time actions
+    Initialize OLED and SPI via OLED_initialize subroutine
+
+    Clear screen
+
+    Set PD0 and PD1 as inputs to read logic highs and lows from both buttons
+
+    macro for setting pointers
+
+
+////multiple-time actions
+    flash ascii characters to display title page.
+
+    if a button reads high, branch to next bundle of arrays of characters
+
+    flash ascii characters for instructions/overview/
+
+    button reads high, branch
+
+    flash ascii characters for first page
+
+    button 1 reads high, branch to left page ----- button 2 reads high, branch to right page
+
+    loop until a set of end page ascii characters are flashed
+
+    button reads high, branch
+
+    flash a set of "game over" ascii characters (or an "end" of sorts)
+
+    button reads high, branch (return to title page?)
